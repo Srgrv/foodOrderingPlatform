@@ -3,6 +3,7 @@ import React from "react";
 //components
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
 
 type TProps = {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const Layout: React.FC<TProps> = ({ children }) => {
       <Header />
       <Hero />
       <div className="container mx-auto flex-1 py-10">{children}</div>
+      <Footer />
     </div>
   );
 };
