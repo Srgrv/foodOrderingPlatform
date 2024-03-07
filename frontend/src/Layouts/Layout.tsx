@@ -1,7 +1,7 @@
 import React from "react";
 
 //components
-import Header from "@/components/ui/Header";
+import Header from "@/components/Header";
 
 type TProps = {
   children: React.ReactNode;
