@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 //routes
-import myUserRoute from "../routes/myUserRoutes";
+import myUserRoute from "./routes/myUserRoutes";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
   console.log("Connected to database");
