@@ -12,7 +12,7 @@ const handleValidationErrors = async (
   // присваиваем перменной error возвращаемый массив ошибок
   const errors = validationResult(req);
   // проверка пустой ли массив
-  if (errors.isEmpty()) {
+  if (!errors.isEmpty()) {
     // возвращаем статус 400, а также объект в json формате
     return res.status(400).json({ errors: errors.array() });
   }
