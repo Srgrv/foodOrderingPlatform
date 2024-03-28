@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 //components
 import {
@@ -15,6 +16,9 @@ import {
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
+
+//types
+import { User } from "@/types";
 
 // создаем модель схемы, также как и в mongoose, описываем тип данных для каждого свойство (z.string(), z.number(), z.boolean()), также есть необязательный параметр .optional()
 const formSchema = z.object({
@@ -32,18 +36,18 @@ type UserFormData = z.infer<typeof formSchema>;
 type Props = {
   onSave: (userProfileData: UserFormData) => void;
   isLoading: boolean;
+  currentUser: User;
 };
 
-export const UserProfileForm = ({ onSave, isLoading }: Props) => {
+export const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      city: "",
-      country: "",
-      addressLine1: "",
-    },
+    defaultValues: currentUser,
   });
+
+  useEffect(() => {
+    form.reset(currentUser);
+  }, [currentUser, form]);
 
   return (
     // компонент из shadcn-ui, в пропсы передается spread из form
